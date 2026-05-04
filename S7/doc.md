@@ -48,5 +48,5 @@
 
 ER-диаграмма
 
-<img src="S7/erd.png">
+![ER-диаграмма](erd.png)
    
