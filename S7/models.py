@@ -10,7 +10,6 @@ class Groups(Basemodel):
     class Meta:
         db_table = "Group"
 
-    id_group = AutoField()
     year = IntegerField()
     is_active = BooleanField()
     tutor_id = IntegerField()
