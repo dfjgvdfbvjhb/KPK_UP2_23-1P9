@@ -15,7 +15,7 @@ class Groups(Basemodel):
     is_active = BooleanField()
     ruk_id = IntegerField()
     stud_count = IntegerField()
-    code_np = CharField(max_length=20)
+    code_np = CharField(max_length=8)
     number = IntegerField()
     after_class_number = IntegerField()
     prefix = CharField(max_length=2)
