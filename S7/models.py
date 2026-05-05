@@ -23,7 +23,7 @@ class Students(Basemodel):
     class Meta:
         db_table = 'Students'
     
-    id_student = AutoField()
+    id_student = IntegerField()
     id_group = ForeignKeyField(Groups, backref='students', on_delete='CASCADE')
 
 def init_db():
