@@ -13,9 +13,9 @@ class Groups(Basemodel):
     id_group = AutoField()
     year = IntegerField()
     is_active = BooleanField()
-    ruk_id = IntegerField()
-    stud_count = IntegerField()
-    code_np = CharField(max_length=8)
+    tutor_id = IntegerField()
+    student_count = IntegerField()
+    cipher_of_the_training_area = CharField(max_length=8)
     number = IntegerField()
     after_class_number = IntegerField()
     prefix = CharField(max_length=2)
@@ -24,7 +24,7 @@ class Students(Basemodel):
     class Meta:
         db_table = 'Students'
     
-    id_stud = AutoField()
+    id_student = AutoField()
     id_group = ForeignKeyField(Groups, backref='students', on_delete='CASCADE')
 
 def init_db():
