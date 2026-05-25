@@ -10,11 +10,12 @@ class BaseModel(Model):
 class Groups(BaseModel):
     class Meta:
         db_table = "Group"
+    
     id = AutoField()
     year = IntegerField(validators=[validate_range(2000, 2999)])
-    is_active = BooleanField()
-    tutor_id = IntegerField(null=True, default=None, validators=[validate_range(1, ...)])
-    student_count = IntegerField(default=0,validators=[validate_range(0, 30)])
+    is_active = BooleanField(default=True) 
+    tutor_id = IntegerField(null=True, default=None) 
+    student_count = IntegerField(default=0, validators=[validate_range(0, 30)])
     cipher_of_the_training_area = CharField(
         max_length=8,
         validators=[validate_regexp(r'\d\d\.\d\d\.\d\d')]
