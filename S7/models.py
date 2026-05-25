@@ -13,7 +13,7 @@ class Groups(BaseModel):
     id = AutoField()
     year = IntegerField(validators=[validate_range(2000, 2999)])
     is_active = BooleanField()
-    tutor_id = IntegerField(null=True, default=None)
+    tutor_id = IntegerField(null=True, default=None, validators=[validate_range(1, ...)])
     student_count = IntegerField(validators=[validate_range(0, 30)])
     cipher_of_the_training_area = CharField(
         max_length=8,
@@ -23,7 +23,7 @@ class Groups(BaseModel):
     after_class_number = IntegerField(
         validators=[validate_one_of([9, 11])]
     )
-    prefix = CharField(validators=[validate_range(1, 2)])
+    prefix = CharField(validators=[validate_length(1, 2)])
 
 class Students(BaseModel):
     class Meta:
