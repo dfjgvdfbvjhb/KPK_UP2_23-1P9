@@ -14,7 +14,7 @@ class Groups(BaseModel):
     year = IntegerField(validators=[validate_range(2000, 2999)])
     is_active = BooleanField()
     tutor_id = IntegerField(null=True, default=None, validators=[validate_range(1, ...)])
-    student_count = IntegerField(validators=[validate_range(0, 30)])
+    student_count = IntegerField(default=0,validators=[validate_range(0, 30)])
     cipher_of_the_training_area = CharField(
         max_length=8,
         validators=[validate_regexp(r'\d\d\.\d\d\.\d\d')]
