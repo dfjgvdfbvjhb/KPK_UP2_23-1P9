@@ -1,5 +1,5 @@
 from peewee import *
-from playhouse import validate_range, validate_regexp, validate_one_of
+from playhouse import validate_range, validate_regexp, validate_one_of, validate_length
 
 db = SqliteDatabase('data.db')
 
