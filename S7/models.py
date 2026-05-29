@@ -13,7 +13,7 @@ class BaseModel(Model):
 
 class Groups(BaseModel):
     class Meta:
-        db_table = "Group"
+        db_table = "groups"
     
     id = AutoField()
     year = IntegerField(null=False,validators=[validate_range(2000, 2999)])
@@ -23,7 +23,7 @@ class Groups(BaseModel):
     cipher_of_the_training_area = CharField(null=False,max_length=8,
         validators=[validate_regexp(r'^\d{2}\.\d{2}\.\d{2}$')]
     )
-    number = IntegerField(null=False,validators = validate_range(1, ...))
+    number = IntegerField(null=False,validators = validate_range(1, 9999))
     after_class_number = IntegerField(null=False,
         validators=[validate_one_of([9, 11])]
     )
@@ -31,16 +31,9 @@ class Groups(BaseModel):
         validators=[validate_length(1, 2)]
     )
 
-class Students(BaseModel):
-    class Meta:
-        db_table = 'Students'
-    
-    student_id = IntegerField()
-    group_id = ForeignKeyField(Groups, backref='students', on_delete='CASCADE')
-
 def init_db():
     db.connect()
-    db.create_tables([Groups, Students])
+    db.create_tables([Groups])
     print("База данных инициализирована")
 
 if __name__ == '__main__':
