@@ -3,6 +3,10 @@ from playhouse import validate_range, validate_regexp, validate_one_of, validate
 
 db = SqliteDatabase('data.db')
 
+def validate_positive_or_none(value):
+    if value is not None and value <= 0 or value:
+        raise ValueError("Значение должно быть положительным или None")
+    
 class BaseModel(Model):
     class Meta:
         database = db
@@ -14,13 +18,13 @@ class Groups(BaseModel):
     id = AutoField()
     year = IntegerField(validators=[validate_range(2000, 2999)])
     is_active = BooleanField(default=True) 
-    tutor_id = IntegerField(null=True, default=None) 
+    tutor_id = IntegerField(null=True, default=None, validators=[validate_positive_or_none]) 
     student_count = IntegerField(default=0, validators=[validate_range(0, 30)])
     cipher_of_the_training_area = CharField(
         max_length=8,
-        validators=[validate_regexp(r'\d\d\.\d\d\.\d\d')]
+        validators=[validate_regexp(r'^\d{2}\.\d{2}\.\d{2}$')]
     )
-    number = IntegerField(constraints=[Check('number > 0')])
+    number = IntegerField(validators = validate_range(0, ...))
     after_class_number = IntegerField(
         validators=[validate_one_of([9, 11])]
     )
